@@ -1,0 +1,117 @@
+#Header {
+    background-color: #E32340;
+}
+
+#Categories {
+    background-color: #E32340;
+}
+
+#Footer {
+    background-color: #E32340;
+}
+
+.fiksed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+}
+
+.box {
+    padding: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #E32340;
+    text-align: center;
+}
+
+    .box h1 {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .box input[type="text"], .box input[type="password"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #fff;
+        padding: 14px 10px;
+        width: 200px;
+        outline: none;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 24px;
+        transition: background 0.5s;
+    }
+
+        .box input[type="text"]:focus, .box input[type="password"]:focus {
+            width: 280px;
+            border-color: #fff;
+        }
+
+    .box input[type="button"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #fff;
+        padding: 14px 30px;
+        outline: none;
+        color: #fff;
+        border-radius: 24px;
+        transition: background 0.5s;
+        font-weight: 500;
+    }
+
+        .box input[type="button"]:hover {
+            background: #fff;
+            color: #E32340;
+        }
+
+.dropBtn {
+    width: 100%;
+    background: #fff;
+    border: none;
+}
+
+    .dropBtn:focus {
+        outline: none;
+    }
+
+.btn {
+    flex: 1 1 auto;
+    margin: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #000;
+    border-radius: 10px;
+}
+
+    .btn:hover {
+        background-position: right center;
+    }
+
+.socialhover a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.abcd {
+    color: #fff;
+}
+
+.pond-inner {
+    position: relative;
+    overflow: hidden;
+}
+
+/*# sourceMappingURL=stye.css.map */

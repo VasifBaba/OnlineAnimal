@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="207a6e2ff0264cd9a80feadbd14adde9" Name="Diagram1">
+        <EntityTypeShape EntityType="HSHSModel.Admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSHSModel.AnimalPhoto" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSHSModel.Animal" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSHSModel.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSHSModel.City" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HSHSModel.User" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="HSHSModel.FK_AnimalPhotoes_Animals" ManuallyRouted="false" />
+        <AssociationConnector Association="HSHSModel.FK_Animals_Categories" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HSHSModel.Banner" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="HSHSModel.Elanlar" Width="1.5" PointX="8.375" PointY="2.5" />
+        <AssociationConnector Association="HSHSModel.FK_Animals_Cities" />
+        <AssociationConnector Association="HSHSModel.FK_Elanlar_Animals" />
+        <AssociationConnector Association="HSHSModel.FK_Elanlar_Categories" />
+        <AssociationConnector Association="HSHSModel.FK_Elanlar_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+﻿@model HS_01.ViewModels.DefaultVIiewModel
+@{
+    ViewBag.Title = "Choose";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row text-center">
+        @if (Model.anima.Count() == 0)
+        {
+            <div class="alert" alert-info mt-5>
+                Bu kateqoriyaya uyğun elan yoxdur..<a href="@Url.Action("Index","Home")">Geri dön</a>
+            </div>
+        }
+        else
+        {
+            foreach (var animalItem in Model.anima)
+            {
+                <div class="col-md-3 mb-5 text-success">
+                    <div class="h-100">
+                        <img src="~/Uploads/@animalItem.Photo" class="card-img-top img-responsive img-thumbnail" style="height:200px;object-fit:contain" />
+                        <hr />
+                        <div class="card-body text-center" style="background-color: lightgray">
+                            <h4 class="card-title">
+                                <a class="text-success" href="@Url.Action("Melumat","Animal", new {id=animalItem.ID})">@animalItem.Name</a>
+                            </h4>
+                            <h5>@animalItem.Price Azn</h5>
+                        </div>
+                        <hr />
+                    </div>
+                   
+                </div>
+            }
+        }
+
+    </div>
+</div>

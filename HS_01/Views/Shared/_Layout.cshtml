@@ -1,0 +1,170 @@
+﻿@using HS_01.Models
+@using HS_01.TextResource
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Heyvanlar aləmi, heyvan satışı" />
+    <meta name="keywords" content="heyvanlarin satisi, heyvan satisi, pisikler, itler, baliqlar, quslar, mal qara, atlar, dovsanlar" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@(Html.Raw(ViewBag.Title))</title>
+    @Styles.Render("~/Content/MainCss")
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @RenderSection("Styles",required:false)
+</head>
+<body>
+
+    <!--HEADER START -->
+
+    <section id="Header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a href="/Home/Index" class="navbar-brand">
+                    <i class="icon ion-md-paw"></i>
+                </a>
+                <button class="navbar-toggler  text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link active text-light" href="/Home/Index"><h5>@RGlobal.RƏsas_Səhifə</h5></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-light" href="/Home/ElanYerlesdirme"><h5>@RGlobal.RElan_Yerləşdir</h5></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"> </span>Dil</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                <a class="dropdown-item" href="@Url.Action("Change", "LanguageChange", new { @lang = "en" })">EN</a>
+                                <a class="dropdown-item flag-icon flag-icon-az" href="@Url.Action("Change", "LanguageChange", new { @lang = "az" })">AZ</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="search mr-5" action="@Url.Action("Search", "Home")" method="post">
+                        <div class="input-group w-100">
+                            <input type="text" class="form-control" name="q" placeholder="@RGlobal.RAxtar">
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav">
+                        @if (Session["UserID"] == null)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false" href="@Url.Action("Home", "Qeydiyyat")"><i class="fas fa-user-circle fa-2x text-light"></i></a>
+                                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                                    <a class="dropdown-item" href="@Url.Action("Qeydiyyat", "User")" target="_blank" )">@RGlobal.RQeydiyyat</a>
+                                    <a class="dropdown-item" href="@Url.Action("Login", "User")">Giriş</a>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false" href="@Url.Action("Home", "Qeydiyyat")"><i class="fas fa-user-circle fa-2x text-light"></i></a>
+                               
+                                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                                    <a class="dropdown-item" href="@Url.Action("Profile", "User")">Profilim</a>
+                                    <a class="dropdown-item" href="@Url.Action("Logout", "User")">@RGlobal.RÇıxış</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+
+    </section>
+
+    <!-- HEADER END -->
+
+
+    @RenderBody()
+
+    <!-- FOOTER START -->
+
+    <section id="Footer" class="mt-5">
+
+        <footer class="page-footer font-small pt-4 text-light">
+            <div class="container text-center text-md-left">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+                        <h5 class="text-uppercase mb-4">HƏDƏFİMİZ </h5>
+                        <p>Hədəfimiz insanların heyvanları daha rahat şəkildə sata və ya ala bilməsidir </p>
+                        <a href="#!" class="whitecolor">Reklam yerləşdir</a>
+                    </div>
+                    <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+                        <h5 class="text-uppercase mb-4">Əlaqə</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <p>
+                                    <i class="fas fa-envelope mr-3"></i><a href="https://www.google.com/gmail/" style="color:#fff">vasifbaba3.14@gmail.com</a>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <i class="fas fa-phone mr-3"></i>070 827 69 43
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <i class="fas fa-phone mr-3"></i>051 583 29 60
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr class="clearfix w-100 d-md-none">
+                    <div class="col-md-4 mt-4 mb-1">
+                        <h5 class="mb-4">SOSİAL ŞƏBƏKƏ</h5>
+                        <a class="socialbtn" href="https://www.facebook.com">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="socialbtn" href="https://www.instagram.com">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="socialbtn" href="https://www.twitter.com">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="footer-copyright text-center py-3">
+                @DateTime.Now
+                <a href="/Home/Index"> Heyvanlaralemi.az</a>
+            </div>
+        </footer>
+    </section>
+    <!-- FOOTER END  -->
+
+    <script src="@Url.Content("~/Scripts/jquery-3.4.1.js")"></script>
+    @*<script src="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>*@
+    @*<script src="@Url.Content("~/Scripts/popper.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/owl.carousel.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    
+    <script src="@Url.Content("~/Scripts/app.js")"></script>
+    @RenderSection("mainJS",required:false)
+</body>
+</html>
+
+
+

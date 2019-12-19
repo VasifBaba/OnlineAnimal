@@ -1,0 +1,65 @@
+﻿@model HS_01.Models.User
+
+@{
+    ViewBag.Title = "Qeydiyyat";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="section-conten padding-y" style="min-height:84vh">
+        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+            <div class="card-body">
+                <h4 class="card-title mb-4 text-center">Daxil ol</h4>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <form method="post">
+                @Html.AntiForgeryToken()
+                <div class="form-row">
+                    <div class="col form-group mr-2">
+                        <label>Mobil nömrə</label>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col mr-2">
+                        <label>Şifrə</label>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a href="#" class="float-right">Şifrəmi unutmuşam</a>
+                    <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked="">Yadda saxla</label>
+                </div>
+                <div class="form-group mt-2">
+                    <button type="submit" class="btn btnmove btn-success btn-block">Daxil ol</button>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <label class="label-success">@ViewBag.SuccessMessage</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <label class="label-danger">@ViewBag.DuplicateMessage</label>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

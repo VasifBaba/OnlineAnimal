@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Areas/HSAdmin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ul>
+    @foreach(var item in ViewBag.search)
+    {
+        <li>@item.Name</li>
+    }
+</ul>

@@ -1,0 +1,86 @@
+﻿@model HS_01.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <section class="section-content padding-y">
+        <div class="card mx-auto" style="max-width:420px; margin-top:40px;">
+            <article class="card-body">
+                <header class="mb-4"><h4 class="card-title text-center">Qeydiyyat</h4></header>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <form method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-row">
+                        <div class="col form-group mr-2">
+                            <label>Ad</label>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col form-group">
+                            <label>Soyad</label>
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group mr-2">
+                            <label>Mobil nömrə</label>
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group mr-2">
+                            <label>Email</label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col mr-2">
+                            <label>Şifrə</label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col">
+                            <label>Təkrar şifrə</label>
+                            <input type="password" class="form-control" name="ConfirmPassword" value="" />
+                        </div>
+                    </div>
+                    <button class="btn btnmove btn-success btn-block mt-2">Təsdiqlə</button>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <label class="label-success">@ViewBag.SuccessMessage</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <label class="label-danger">@ViewBag.DuplicateMessage</label>
+                        </div>
+                    </div>
+                </form>
+            </article>
+        </div>
+        <p class="text-center mt-4">Hesabınız var ? <a href="/User/Login">Daxil ol</a></p>
+    </section>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

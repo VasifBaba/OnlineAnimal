@@ -1,0 +1,75 @@
+﻿@using HS_01.ViewModels
+@model HS_01.ViewModels.DefaultVIiewModel
+@{
+    ViewBag.Title = "Melumat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section id="Melumat">
+    <!-- MELUMAT START -->
+
+    <div class="container mt-5 mb-5">
+        <div class="row bg-light">
+            <div class="col-md-4 p-5">
+                <div class="card h-100">
+                    <img src="@Model.elanFirst.Animal.AnimalPhotoes" class="card-img-top">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">
+                            <a href="@Url.Action("Melumat","Animal")" class="text-success">@Model.elanFirst.Animal.Name</a>
+                        </h4>
+                        <hr />
+                        <div class="nav d-flex">
+                            @foreach (var animaItem in Model.anima)
+                            {
+                                <img onclick="change_img(this)" src="~/Uploads/@animaItem.Photo" class="card-img-top" />
+                            }
+                        </div>
+                        <div class="favoriteicon">
+                            <i class="fas fa-heart fa-3x"></i>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <div class="offset-md-2 offset-sm-1"></div>
+            <div class="col-md-6 p-5">
+                <div class="card h-100 p-3">
+                    <h3 class="text-center">Məlumat</h3>
+                    <hr />
+                    <p class="fontsize">@Model.elanFirst.Animal.Description</p>
+                    <br />
+                    <br />
+                    <hr />
+                    <h6>Satır : @Model.elanFirst.User.Name</h6>
+                    <hr />
+                    <h6>Mobil nömrə : @Model.elanFirst.User.Phone</h6>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ELANLAR START -->
+
+<section id="Elanlar" class="mt-5 mb-5">
+    <div class="mt-5 mb-5 text-success">
+        <h3 class="text-center mt-5 mb-5">Oxşar Elanlar</h3>
+        <div class="owl-carousel owl-theme">
+            @foreach (var animalItem in Model.anima)
+            {
+                <div class="h-100">
+                    <img src="~/Uploads/@animalItem.Photo" class="card-img-top img-responsive img-thumbnail" style="height:200px;object-fit:contain" />
+                    <hr />
+                    <div class="card-body text-center" style="background-color: lightgray">
+                        <h4 class="card-title">
+                            <a class="text-success" href="@Url.Action("Melumat","Animal", new {id=animalItem.ID})">@animalItem.Name</a>
+                        </h4>
+                        <h5>@animalItem.Price Azn</h5>
+                    </div>
+                    <hr />
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ELANLAR END -->

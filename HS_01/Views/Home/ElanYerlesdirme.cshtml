@@ -1,0 +1,116 @@
+﻿@model HS_01.ViewModels.DefaultVIiewModel
+@{
+    ViewBag.Title = "ElanYerlesdirme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+    <!-- Filepond stylesheet -->
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css" rel="stylesheet">
+    <style>
+
+        /**
+        * FilePond Custom Styles
+        */
+        .filepond--drop-label {
+            color: #4c4e53;
+        }
+
+        .filepond--label-action {
+            text-decoration-color: #babdc0;
+        }
+
+        .filepond--panel-root {
+            border-radius: 2em;
+            background-color: #edf0f4;
+            height: 1em;
+        }
+
+        .filepond--item-panel {
+            background-color: #595e68;
+        }
+
+        .filepond--drip-blob {
+            background-color: #7f8a9a;
+        }
+    </style>
+}
+
+
+<section class="section-content padding-y">
+    <div class="card mx-auto col-sm-12" style="max-width:420px; margin-top:40px;">
+        <article class="card-body">
+            <form method="post" id="elanForm">
+                <h5 class="mt-4">Heyvanın adı</h5>
+                <input name="Name" class="form-control" type="text">
+                <h5 class="mt-4">Kateqoriya</h5>
+                <select class="form-control" name="categoryId">
+                    @foreach (var item in Model.ctg)
+                    {
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                </select>
+                <h5 class="mt-4">Şəhər</h5>
+                <select class="form-control" name="CityId">
+                    @foreach (var ctyItem in Model.cty)
+                    {
+                        <option value="@ctyItem.ID">@ctyItem.Name</option>
+                    }
+                </select>
+                <h5 class="mt-4">Qiymət, AZN</h5>
+                <input name="Price" class="form-control" type="number">
+
+                <h5 class="mt-4">Heyvan haqqında məlumat</h5>
+                <textarea name="Description" rows="8" class="form-control"></textarea>
+                <input type="file" class="filepond" name="filepond" multiple
+                       data-max-file-size="3MB" data-max-files="3">
+                <div class="col-md-2 mt-4">
+                    <input type="submit" value="Elanı əlavə et" class="btn btnmove btn-success mt-4 mb-5">
+                </div>
+            </form>
+
+        </article>
+    </div>
+</section>
+@section mainJS{
+        <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+        <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+        <script>
+            /*
+We want to preview images, so we need to register the Image Preview plugin
+*/
+            FilePond.registerPlugin(
+
+                // encodes the file as base64 data
+                FilePondPluginFileEncode,
+
+                // validates the size of the file
+                FilePondPluginFileValidateSize,
+
+                // corrects mobile image orientation
+                FilePondPluginImageExifOrientation,
+
+                // previews dropped images
+                FilePondPluginImagePreview
+            );
+            FilePond.create(
+                document.querySelector('.filepond')
+            );
+
+
+            // Select the file input and use create() to turn it into a pond
+            $("#elanForm").on("submit", function () {
+                FilePond.setOptions({
+                server: {
+                    process: '@Url.Action("ElanYerlesdirme", "Home")'
+                }
+                })
+            });
+        </script>
+
+    }
